@@ -1,0 +1,356 @@
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --ink: #1f2430;
+  --muted: #6b7280;
+  --line: #e6e8ef;
+  --accent: #6366f1;
+  --accent-soft: #eef0ff;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 500px at 20% -10%, #eef0ff 0%, transparent 60%),
+    radial-gradient(900px 420px at 100% 0%, #eefaf6 0%, transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+/* ---------- 顶栏 ---------- */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 -24px 28px;
+  padding: 14px 24px;
+  background: rgba(246, 247, 251, 0.82);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand strong {
+  font-size: 19px;
+  letter-spacing: 0.2px;
+  background: linear-gradient(92deg, #6366f1, #22a699);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand span {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.seg button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+  font-family: inherit;
+}
+
+.seg button:hover { color: var(--ink); }
+
+.seg button.on {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.toggle {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  font-family: inherit;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.toggle.on {
+  border-color: #c7f0e3;
+  background: #eefaf6;
+  color: #12876f;
+  font-weight: 600;
+}
+
+/* ---------- 卡片网格 ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  min-height: 168px;
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, 0.04),
+    0 12px 28px -18px rgba(16, 24, 40, 0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card.tall { min-height: 228px; }
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #d8dbef;
+  box-shadow:
+    0 2px 4px rgba(16, 24, 40, 0.05),
+    0 20px 40px -22px rgba(16, 24, 40, 0.3);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+.card::after {
+  content: attr(data-webpet-attachment);
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 10.5px;
+  letter-spacing: 0.6px;
+  color: #b6bbcf;
+  text-transform: uppercase;
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+}
+
+/* ---------- 页脚 ---------- */
+.hint {
+  margin-top: 34px;
+  padding: 14px 18px;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+  .page { padding: 0 16px 120px; }
+  .bar { margin: 0 -16px 20px; padding: 12px 16px; }
+  .brand span { display: none; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ---------- 坐标校准面板 ---------- */
+.cal {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 300px;
+  max-height: calc(100vh - 36px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px -16px rgba(16, 24, 40, 0.35);
+  z-index: 900;
+  font-size: 12.5px;
+  overflow: hidden;
+}
+
+.cal-head {
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cal-head strong { font-size: 13.5px; }
+
+.cal-now { color: var(--muted); font-size: 11.5px; }
+.cal-now b { color: var(--accent); font-weight: 650; }
+
+.cal-list { overflow-y: auto; padding: 6px; flex: 1; }
+
+.cal-item { border-radius: 9px; margin-bottom: 2px; }
+.cal-item.active { background: var(--accent-soft); }
+
+.cal-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  color: var(--ink);
+  text-align: left;
+  border-radius: 9px;
+}
+
+.cal-title:hover { background: rgba(99, 102, 241, 0.07); }
+.cal-title span { flex: 1; }
+.cal-title em { color: var(--accent); font-style: normal; font-size: 9px; }
+.cal-title i { color: var(--muted); font-style: normal; font-weight: 700; }
+
+.cal-body {
+  padding: 4px 9px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.cal-group { display: flex; flex-direction: column; gap: 5px; }
+
+.cal-label {
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  margin-bottom: 1px;
+}
+
+.cal-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cal-field > span {
+  width: 12px;
+  color: var(--muted);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 11px;
+}
+
+.cal-field input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 12px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.cal-field input:focus {
+  outline: none;
+  border-color: #b9bcf7;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.cal-spin { display: flex; gap: 3px; }
+
+.cal-spin button {
+  width: 22px;
+  height: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--muted);
+  padding: 0;
+}
+
+.cal-spin button:hover { background: var(--accent-soft); color: var(--accent); border-color: #c9cbf9; }
+
+.cal-foot {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line);
+  background: rgba(250, 250, 253, 0.9);
+}
+
+.cal-export {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #c9cbf9;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cal-export:hover { background: #e4e7ff; }
+
+.cal-foot p {
+  margin: 8px 0 0;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}

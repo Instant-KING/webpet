@@ -1,0 +1,50 @@
+.webpet-shell {
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.webpet-character {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  filter: drop-shadow(0 8px 10px rgb(0 0 0 / 25%));
+  transform-origin: 50% 58%;
+}
+
+.webpet-flipped { transform: scaleX(-1); }
+.webpet-shell[data-webpet-state='dragging'] { cursor: grabbing; }
+.webpet-shell[data-webpet-state='free'] { cursor: grab; }
+.webpet-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(336px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 8px;
+  background: rgb(23 26 31 / 94%);
+  color: #f4f0e8;
+  font: 13px/1.5 sans-serif;
+  pointer-events: none;
+  white-space: pre-line;
+}
+
+[data-webpet-drop-target='active'] {
+  outline: 2px solid rgb(232 101 46 / 85%);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 2px rgb(232 101 46 / 25%);
+}
+
+[data-webpet-attached] { position: relative; }
+[data-webpet-attached='front'] { z-index: 45; }
+[data-webpet-attached='back'] { z-index: 20; }
+
+@media (prefers-reduced-motion: reduce) {
+  .webpet-character { transition: none; }
+}

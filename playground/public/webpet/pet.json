@@ -1,0 +1,7 @@
+{
+  "id": "forgebot",
+  "displayName": "ForgeBot",
+  "description": "A pixel-art presentation workspace companion.",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp"
+}
